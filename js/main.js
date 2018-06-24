@@ -1,8 +1,5 @@
 
-var hitSounds = []; 
-hitSounds[0] = new Audio("assets/sound/sfx_exp_various2.wav");
-hitSounds[1] = new Audio("assets/sound/sfx_exp_various3.wav");
-hitSounds[2] = new Audio("assets/sound/sfx_exp_various4.wav");
+var hitSound = new Audio("assets/sound/sfx_exp_various4.wav");
 
 var exit = false;
 
@@ -18,7 +15,7 @@ playground.appendChild(scoreDiv);
 
 
 playground.addEventListener("click", function(e) {
-	hitSounds[2].play();
+	hitSound.play();
 });
 
 
@@ -149,10 +146,10 @@ function gameLoop() {
 function updateScore() {
 	++score;
 	scoreDiv.innerHTML = 'Score: ' + score;
-	TweenMax.fromTo(scoreDiv, 0.1, {x:-3},
+	TweenMax.fromTo(scoreDiv, 0.1, {x:-10},
 		{
-			x:3,
-			repeat:2,
+			x:10,
+			repeat:3,
 			yoyo:true,
 			ease:Sine.easeInOut,
 			onComplete:function() {
