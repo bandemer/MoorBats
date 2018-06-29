@@ -1,32 +1,33 @@
 
-var hitSound = new Audio("assets/sound/sfx_exp_various4.wav");
+const hitSound = new Audio("assets/sound/sfx_exp_various4.wav");
 
 var exit = false;
 
 var to = [0, 0];
 
 var score = 0;
-var playground = document.getElementById('playground');
 
+var playground = document.getElementById('playground');
 var scoreDiv = document.createElement('div');
 scoreDiv.id = 'score';
 scoreDiv.innerHTML = 'Score: ' + score;
 playground.appendChild(scoreDiv);
-
-
 playground.addEventListener("click", function(e) {
 	hitSound.play();
 });
 
 
-var counter 	= 0;
-var classnames 	= ['boxleft', 'boxcenter', 'boxright'];
+var counter = 0;
+
+const classnames = ['bat1', 'bat2', 'bat3', 'bat4'];
 
 var tls = [];
 
 function makeATween() 
 {
-	if (exit) return;
+	if (exit) {
+		return;
+	}
 	
 	tls['box'+counter] = new TimelineLite();
 	
@@ -138,7 +139,6 @@ function gameLoop() {
 	setTimeout("gameLoop()", 5000);
 }
 
-
 /**
  * Update score
  * @returns
@@ -159,4 +159,3 @@ function updateScore() {
 }
 
 gameLoop();
-
