@@ -7,19 +7,21 @@ var to = [0, 0];
 
 var score = 0;
 
-var playground = document.getElementById('playground');
+var playground = document.createElement('div');
+playground.id = 'moorbatplayground';
+document.body.appendChild(playground);
+
 var scoreDiv = document.createElement('div');
-scoreDiv.id = 'score';
+scoreDiv.id = 'moorbatscore';
 scoreDiv.innerHTML = 'Score: ' + score;
 playground.appendChild(scoreDiv);
 playground.addEventListener("click", function(e) {
 	hitSound.play();
 });
 
-
 var counter = 0;
 
-const classnames = ['bat1', 'bat2', 'bat3', 'bat4'];
+const classnames = ['moorbat1', 'moorbat2', 'moorbat3', 'moorbat4'];
 
 var tls = [];
 
@@ -34,19 +36,15 @@ function makeATween()
 	var box = document.createElement('div');
 	box.className = classnames[counter % classnames.length];
 	box.id = 'box'+counter;
-	box.addEventListener("click", function(e){
-		
+	box.addEventListener("click", function(e){		
 				
 		tls[this.getAttribute('id')].stop();
 		tls[this.getAttribute('id')].clear();
-		
-		
+				
 		var cN = this.className;
 		this.className = cN + ' '+cN+'explode';
-		
-		
+				
 		tls[this.getAttribute('id')] = new TimelineLite();
-		
 		tls[this.getAttribute('id')].stop();
 		tls[this.getAttribute('id')].clear();
 		
@@ -92,8 +90,7 @@ function makeATween()
 			onComplete:cleanUp
 		}, 0)
 	);
-	tls['box'+counter].play();
-	
+	tls['box'+counter].play();	
 	 
 	++counter;
 	
@@ -108,15 +105,15 @@ function makeATween()
  */
 function generatePosition() {
 	
-	var returnArray = [100, 100];
+	let returnArray = [100, 100];
 	
 	if (screen.availWidth && screen.availHeight) {
 	
-		var xfrom 	= Math.round(.1 * screen.availWidth);
-		var xto 	= Math.round(.9 * screen.availWidth);
+		const xfrom = Math.round(.1 * screen.availWidth);
+		const xto 	= Math.round(.9 * screen.availWidth);
 		
-		var yfrom 	= Math.round(.1 * screen.availHeight);
-		var yto 	= Math.round(.5 * screen.availHeight);
+		const yfrom = Math.round(.1 * screen.availHeight);
+		const yto 	= Math.round(.5 * screen.availHeight);
 		
 		returnArray[0] = xfrom + Math.round( Math.random() * (xto - xfrom));
 		returnArray[1] = yfrom + Math.round( Math.random() * (yto - yfrom));
@@ -129,14 +126,14 @@ function generatePosition() {
  * Main loop
  * @returns
  */
-function gameLoop() {
+function moorBats() {
 	
 	to = generatePosition();
 
 	makeATween();
 
 	if (exit) return;
-	setTimeout("gameLoop()", 5000);
+	setTimeout("moorBats()", 5000);
 }
 
 /**
@@ -158,4 +155,4 @@ function updateScore() {
 		});
 }
 
-gameLoop();
+
