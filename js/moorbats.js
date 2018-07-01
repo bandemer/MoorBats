@@ -1,5 +1,5 @@
 
-const hitSound = new Audio("assets/sound/sfx_exp_various4.wav");
+const hitSound = new Audio("../assets/sound/sfx_exp_various4.wav");
 
 var exit = false;
 
