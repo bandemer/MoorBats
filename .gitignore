@@ -1,4 +1,7 @@
 .project
 .buildpath
 .settings
-assets/
+.idea
+assets/img/*
+assets/sound/*
+js/TweenMax*
